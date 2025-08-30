@@ -7,9 +7,15 @@
     "start:dev": "cross-env NODE_ENV=dev nodemon -e js,ts,jsx,tsx -x sls offline --stage dev",
     "package:dev": "cross-env NODE_ENV=dev sls package --package output --stage dev",
     "deploy:dev": "cross-env NODE_ENV=dev sls deploy --stage dev",
-    "destroy:dev": "cross-env NODE_ENV=dev sls remove --stage dev"
+    "destroy:dev": "cross-env NODE_ENV=dev sls remove --stage dev",
+    "migration:create": "typeorm-ts-node-commonjs migration:create",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d data-source.ts",
+    "migration:run": "ts-node -r tsconfig-paths/register data-source.ts run",
+    "migration:revert": "ts-node -r tsconfig-paths/register data-source.ts revert",
+    "migration:show": "ts-node -r tsconfig-paths/register data-source.ts show"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.879.0",
     "@middy/core": "^5.5.1",
     "@middy/http-error-handler": "^5.5.1",
     "@middy/http-json-body-parser": "^5.5.1",
