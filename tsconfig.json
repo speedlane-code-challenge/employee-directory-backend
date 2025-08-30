@@ -11,7 +11,9 @@
     "sourceMap": true,
     "outDir": ".build",
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*.ts", "serverless.ts"],
   "exclude": [

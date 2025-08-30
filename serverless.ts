@@ -1,4 +1,6 @@
+import "reflect-metadata";
 import { employeeRoutes } from "./src/modules/employee/routes";
+import { departmentRoutes } from "./src/modules/department/routes";
 
 const serverlessConfiguration = {
   frameworkVersion: "3",
@@ -20,6 +22,7 @@ const serverlessConfiguration = {
   },
   functions: {
    ...employeeRoutes,
+   ...departmentRoutes,
   },
 };
 

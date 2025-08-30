@@ -2,7 +2,7 @@ import { createDataSourceConfig } from "./src/modules/shared/services/db.service
 import * as dotenv from "dotenv";
 
 // Load environment variables
-dotenv.config({ path: `.env.${process.env.NODE_ENV || 'dev'}` });
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 // Export AppDataSource as a Promise that resolves to the configured DataSource
 export const AppDataSource = createDataSourceConfig();
