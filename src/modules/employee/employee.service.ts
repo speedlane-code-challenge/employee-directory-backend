@@ -1,13 +1,13 @@
 import { Repository } from "typeorm";
-import { Database } from "@modules/shared/services/db.service";
+import { Database } from "../shared/services/db.service";
 import { Employee } from "./employee.entity";
 import {
   CreateEmployeeDto,
   UpdateEmployeeDto,
   EmployeeResponseDto,
 } from "./employee.dto";
-import { DepartmentService } from "@modules/department/department.service";
-import { Department } from "@modules/department/department.entity";
+import { DepartmentService } from "../department/department.service";
+import { Department } from "../department/department.entity";
 import { Gender } from "./enums/gender.enum";
 
 export class EmployeeService {

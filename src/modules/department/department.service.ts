@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { Database } from "@modules/shared/services/db.service";
+import { Database } from "../shared/services/db.service";
 import { Department } from "./department.entity";
 import {
   CreateDepartmentDto,

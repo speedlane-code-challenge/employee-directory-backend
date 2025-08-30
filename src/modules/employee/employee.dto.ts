@@ -1,4 +1,4 @@
-import { DepartmentResponseDto } from "@modules/department/department.dto";
+import { DepartmentResponseDto } from "../department/department.dto";
 
 /**
  * Data Transfer Objects for Employee operations

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { idRegex } from "@utils/regex";
+import { idRegex } from "../../utils/regex";
 
 /**
  * Validation schemas for Department operations

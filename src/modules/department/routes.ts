@@ -1,4 +1,4 @@
-import { getHandler } from "@libs/handler";
+import { getHandler } from "../../libs/handler";
 
 const path = "./src/modules/department";
 

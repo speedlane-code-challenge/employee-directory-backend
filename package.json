@@ -37,6 +37,7 @@
     "@types/node": "^24.3.0",
     "cross-env": "^7.0.3",
     "nodemon": "^3.1.10",
+    "serverless-dotenv-plugin": "^6.0.0",
     "serverless-offline": "^8.8.0",
     "serverless-plugin-typescript": "^2.1.5",
     "ts-node": "^10.9.2",

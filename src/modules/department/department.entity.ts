@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from "typeorm";
 
-import { Employee } from "@modules/employee/employee.entity";
+import { Employee } from "../employee/employee.entity";
 
 @Entity()
 export class Department {

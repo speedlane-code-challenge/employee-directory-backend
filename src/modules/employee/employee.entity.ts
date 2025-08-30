@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from "typeorm";
 
-import { Department } from "@modules/department/department.entity";
+import { Department } from "../department/department.entity";
 import { Gender } from "./enums/gender.enum";
 
 @Entity()

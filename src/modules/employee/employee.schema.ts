@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { dateRegex, idRegex } from '@utils/regex';
+import { dateRegex, idRegex } from '../../utils/regex';
 import { Gender } from './enums/gender.enum';
 
 /**

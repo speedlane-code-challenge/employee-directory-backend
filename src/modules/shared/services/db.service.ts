@@ -2,9 +2,9 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import * as dotenv from "dotenv";
 import { join } from "path";
-import { SecretManagerService } from "@modules/shared/services/secret-manager.service";
-import { Department } from "@modules/department/department.entity";
-import { Employee } from "@modules/employee/employee.entity";
+import { SecretManagerService } from "../../shared/services/secret-manager.service";
+import { Department } from "../../department/department.entity";
+import { Employee } from "../../employee/employee.entity";
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -16,8 +16,11 @@ export async function createDataSourceConfig(): Promise<DataSource> {
   const { SECRET_ID } = process.env;
   if (!SECRET_ID) throw new Error("SECRET_ID environment variable is required");
 
+  console.log("SECRET_ID:", SECRET_ID);
+
   const secretManagerService: SecretManagerService = new SecretManagerService();
   const dbCredentials = await secretManagerService.getSecretValue(SECRET_ID);
+  console.log('Database credentials retrieved from Secrets Manager', JSON.stringify(dbCredentials));
 
   // Detect runtime: when executed via ts-node the source file ends with .ts
   const root = process.cwd();
@@ -46,8 +49,10 @@ class Database {
   private static connection: DataSource;
   public static async getConnection() {
     if (this.connection && this.connection.isInitialized) {
+      console.log("Reusing existing database connection");
       return this.connection;
     }
+    console.log("Initializing new database connection...");
     this.connection = await createDataSourceConfig();
     await this.connection.initialize();
     console.log(

@@ -1,9 +1,9 @@
-import { getResponse } from "@libs/response";
+import { getResponse } from "../../libs/response";
 import {
   APIGatewayEvent,
   ValidatedEventAPIGatewayProxyEvent,
-} from "@libs/api-gateway";
-import { authenticatedMiddyfy } from "@libs/validation";
+} from "../../libs/api-gateway";
+import { authenticatedMiddyfy } from "../../libs/validation";
 import { EmployeeService } from "./employee.service";
 import { CreateEmployeeDto, UpdateEmployeeDto } from "./employee.dto";
 import {

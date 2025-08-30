@@ -1,6 +1,6 @@
-import { getResponse } from '@libs/response';
-import { APIGatewayEvent, ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
-import { authenticatedMiddyfy } from '@libs/validation';
+import { getResponse } from '../../libs/response';
+import { APIGatewayEvent, ValidatedEventAPIGatewayProxyEvent } from '../../libs/api-gateway';
+import { authenticatedMiddyfy } from '../../libs/validation';
 import { DepartmentService } from './department.service';
 import { CreateDepartmentDto, UpdateDepartmentDto } from './department.dto';
 import { 
