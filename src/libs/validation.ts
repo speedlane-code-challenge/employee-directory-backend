@@ -6,7 +6,7 @@ import * as util from 'util';
 import { Schema } from 'yup';
 
 import { getResponse } from '../libs/response';
-// import { CognitoService } from '../modules/shared/services/congito.service';
+import { CognitoService } from '../modules/shared/services/congito.service';
 
 const schemaValidator = (schema: { body?: Schema; queryStringParameters?: Schema; pathParameters?: Schema }) => {
     const before = async (request: any) => {
@@ -45,46 +45,47 @@ const schemaValidator = (schema: { body?: Schema; queryStringParameters?: Schema
     };
 };
 
-// const verifyAccessToken = () => {
-//     const before = async (request: any) => {
-//         const cognitoService: CognitoService = new CognitoService();
+const verifyAccessToken = () => {
+    const before = async (request: any) => {
+        const cognitoService: CognitoService = new CognitoService();
 
-//         try {
-//             const authHeader = request.event.headers.Authorization;
+        try {
+            const authHeader = request.event.headers.authorization || request.event.headers.Authorization;
 
-//             if (!authHeader) {
-//                 return getResponse(401, {
-//                     success: false,
-//                     errorCode: 401,
-//                     errorMessage: 'Unauthorized',
-//                 });
-//             }
+            if (!authHeader) {
+                return getResponse(401, {
+                    success: false,
+                    errorCode: 401,
+                    errorMessage: 'Unauthorized',
+                });
+            }
 
-//             const accessToken = authHeader.split(' ')[1];
-//             const user = await cognitoService.getUser(accessToken);
-//             if (!user) {
-//                 return getResponse(401, {
-//                     success: false,
-//                     errorCode: 401,
-//                     errorMessage: 'Unauthorized',
-//                 });
-//             }
+            const accessToken = authHeader.split(' ')[1];
+            console.log('accessToken', accessToken);
+            const user = await cognitoService.getUser(accessToken);
+            if (!user) {
+                return getResponse(401, {
+                    success: false,
+                    errorCode: 401,
+                    errorMessage: 'Unauthorized',
+                });
+            }
 
-//             return Promise.resolve();
-//         } catch (e) {
-//             console.error(e);
-//             return getResponse(401, {
-//                 success: false,
-//                 errorCode: 401,
-//                 errorMessage: 'Unauthorized',
-//             });
-//         }
-//     };
+            return Promise.resolve();
+        } catch (e) {
+            console.error(e);
+            return getResponse(401, {
+                success: false,
+                errorCode: 401,
+                errorMessage: 'Unauthorized',
+            });
+        }
+    };
 
-//     return {
-//         before,
-//     };
-// };
+    return {
+        before,
+    };
+};
 
 const authenticatedMiddyfy = (
     handler: APIGatewayProxyHandler,
@@ -96,7 +97,7 @@ const authenticatedMiddyfy = (
 ) => {
     return middy(handler)
         .use(jsonBodyParser())
-        // .use(verifyAccessToken())
+        .use(verifyAccessToken())
         .use(schemaValidator(inputSchema))
         .use(httpErrorHandler())
         .onError(async (request: any) => {
