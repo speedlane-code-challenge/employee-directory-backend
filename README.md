@@ -76,17 +76,59 @@ npm run start:dev
 ```
 This runs `serverless offline` with `NODE_ENV=dev`.
 
-Hit endpoints (examples):
+## Endpoints:
+### Departments
 ```
 GET    /departments
-POST   /departments
-PUT    /departments/{id}
-DELETE /departments/{id}
+  → Returns a list of departments.
 
+POST   /departments
+  Body: { "name": "Engineering", "description": "Engineering dept" }
+
+PUT    /departments/{id}
+  Body: { "name": "Design", "description": ", "description": "Engineering dept" }
+
+DELETE /departments/{id}
+```
+### Employees
+```
 GET    /employees
+  → Returns a list of employees.
+
 POST   /employees
+  Body: {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@test.com",
+    "phoneNumber": "123456789",
+    "gender": "Male",
+    "dateOfBirth": "1994-01-01",
+    "departmentId": "1",
+    "jobTitle": "Software Engineer",
+    "address": "Address",
+    "imageUrl": "/path-to-image",
+    "dateOfEmployment": "2025-01-01"
+  }
+
 PUT    /employees/{id}
+  Body: {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@test.com",
+    "phoneNumber": "123456789",
+    "gender": "Male",
+    "dateOfBirth": "1994-01-01",
+    "departmentId": "1",
+    "jobTitle": "Software Engineer",
+    "address": "Address",
+    "imageUrl": "/path-to-image",
+    "dateOfEmployment": "2025-01-01"
+  }
+
 DELETE /employees/{id}
+```
+```
+All endpoints require a valid Authorization: Bearer <access_token>.
 ```
 
 ## Migrations
