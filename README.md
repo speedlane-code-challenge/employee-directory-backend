@@ -19,6 +19,9 @@ Serverless (AWS Lambda) backend built with TypeScript, TypeORM, MySQL, and AWS S
 - Centralized database connection with singleton + initialization lock
 - Request validation middleware
 
+## Database Schema
+![ERD Diagram](docs/ERD.png)
+
 ## Project Structure
 ```
 ├── data-source.ts              # TypeORM CLI entry (migrations runner)
